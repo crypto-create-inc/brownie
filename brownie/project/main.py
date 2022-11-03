@@ -725,6 +725,7 @@ def load(
     project_path: Union[Path, str, None] = None,
     name: Optional[str] = None,
     raise_if_loaded: bool = True,
+    create_filesystem_things = True #giving False supports running in read-only FS
 ) -> "Project":
     """Loads a project and instantiates various related objects.
 
@@ -773,7 +774,8 @@ def load(
             return loaded_project
 
     # paths
-    _create_folders(project_path)
+    if create_filesystem_things:
+        _create_folders(project_path)
     _add_to_sys_path(project_path)
 
     # load sources and build
