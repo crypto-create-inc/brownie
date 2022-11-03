@@ -22,7 +22,7 @@ from brownie._singleton import _Singleton
 __version__ = "1.19.2"
 
 BROWNIE_FOLDER = Path(__file__).parent
-DATA_FOLDER = Path.home().joinpath(".brownie")
+DATA_FOLDER = "blockchain/brownie_conf" #HACK XXX. Path.home().joinpath(".brownie")
 
 DATA_SUBFOLDERS = ("accounts", "ethpm", "packages")
 
