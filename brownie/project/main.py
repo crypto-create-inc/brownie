@@ -187,7 +187,7 @@ class Project(_ProjectBase):
         self._active = False
         self.load()
 
-    def load(self, raise_if_loaded: bool = True) -> None:
+    def load(self, raise_if_loaded: bool = True, compile: bool = False) -> None:
         """Compiles the project contracts, creates ContractContainer objects and
         populates the namespace."""
         if self._active:
@@ -254,8 +254,9 @@ class Project(_ProjectBase):
 
         # compile updated sources, update build
         changed = self._get_changed_contracts(interface_hashes)
-        self._compile(changed, self._compiler_config, False)
-        self._compile_interfaces(interface_hashes)
+        if compile:
+            self._compile(changed, self._compiler_config, False) #XXX
+            self._compile_interfaces(interface_hashes)
         self._load_dependency_artifacts()
 
         self._create_containers()
