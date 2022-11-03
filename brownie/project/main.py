@@ -407,8 +407,9 @@ class Project(_ProjectBase):
         return deployment_map
 
     def _save_deployment_map(self, deployment_map: Dict) -> None:
-        with self._build_path.joinpath("deployments/map.json").open("w") as fp:
-            json.dump(deployment_map, fp, sort_keys=True, indent=2, default=sorted)
+        if False: #XXX read-only filesys hack
+            with self._build_path.joinpath("deployments/map.json").open("w") as fp:
+                json.dump(deployment_map, fp, sort_keys=True, indent=2, default=sorted)
 
     def _remove_from_deployment_map(self, contract: ProjectContract) -> None:
         if CONFIG.network_type != "live" and not CONFIG.settings["dev_deployment_artifacts"]:
