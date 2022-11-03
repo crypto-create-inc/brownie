@@ -343,6 +343,7 @@ def _make_data_folders(data_folder: Path) -> None:
 warnings.filterwarnings("once", category=DeprecationWarning, module="brownie")
 
 # create data folders
-_make_data_folders(DATA_FOLDER)
+if False: #hack to not create on read-only filesys
+    _make_data_folders(DATA_FOLDER)
 
 CONFIG = _Singleton("Config", (ConfigContainer,), {})()
